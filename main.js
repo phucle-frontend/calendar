@@ -179,6 +179,20 @@ document.addEventListener("DOMContentLoaded", function () {
     selectedYear = yearToday;
     selectedMonth = monthToday;
     selectedDate = dayToday;
+      const date = new Date(
+          `${selectedYear}-${selectedMonth}-${selectedDate}`
+        );
+        const day = date.getDay();
+        const daysOfWeek = [
+          "Chủ Nhật",
+          "Thứ 2",
+          "Thứ 3",
+          "Thứ 4",
+          "Thứ 5",
+          "Thứ 6",
+          "Thứ 7",
+        ];
+        document.querySelector(".date-of-week").innerHTML = daysOfWeek[day];
     renderCalendar();
   });
 
@@ -212,5 +226,5 @@ document.addEventListener("DOMContentLoaded", function () {
     selectedDate = parseInt(selectedOptionDate);
     renderCalendar();
   });
-  renderCalendar(); // first render
+  renderCalendar(); // First render
 });
