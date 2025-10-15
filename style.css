@@ -1,0 +1,120 @@
+button {
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+}
+#container {
+  border: 1px solid black;
+  padding: 2rem 1.5rem;
+  border-radius: 0.5rem;
+  display: flex;
+  max-width: 60vw;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.date-title {
+  background-color: yellowgreen;
+  text-align: center;
+  padding: 0.5rem;
+  width: 100%;
+  font-weight: 600;
+  font-size: 1.2rem;
+}
+
+#date-specification {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.date-of-week {
+  text-decoration: underline;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.calendar-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  display: grid;
+  grid-template-columns: auto auto auto auto auto auto auto;
+  gap: 5px;
+}
+
+.calendar-header-item {
+  padding: 5px;
+  width: 100px;
+  background-color: rgb(203, 221, 167);
+  text-align: center;
+}
+
+#calendar-body {
+  display: grid;
+  grid-template-columns: auto auto auto auto auto auto auto;
+  gap: 5px;
+}
+
+.calendar-body-date-item {
+  padding: 15px 5px;
+  width: 100px;
+  background-color: rgb(222, 230, 207);
+  text-align: center;
+  font-weight: 600;
+}
+
+.calendar-body-date-item-active {
+  background-color: yellowgreen;
+  font-weight: 600;
+  color: #111;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.btn-back-year {
+}
+
+.btn-back-month {
+}
+
+.input-date {
+}
+
+.nput-dat {
+}
+
+.input-month {
+}
+
+.input-year {
+}
+
+.submit-btn {
+    background: azure;
+}
+
+.btn-reset-default-date {
+    background: azure;
+    }
+
+.btn-forward-month {
+}
+
+.btn-forward-year {
+}
+
+.btn-forward-year {
+}

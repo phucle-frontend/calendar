@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calendar</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="container">
+      <div class="date-title">Tháng <span id="selected-month" ></span> năm <span id='selected-year'></span></div>
+      <div id="date-specification"></div>
+      <div class="date-of-week">Thứ 4</div>
+      <div class="calendar-container">
+        <div class="calendar-header">
+            <div class="calendar-header-item">CN</div>
+            <div class="calendar-header-item">T2</div>
+            <div class="calendar-header-item">T3</div>
+            <div class="calendar-header-item">T4</div>
+            <div class="calendar-header-item">T5</div>
+            <div class="calendar-header-item">T6</div>
+            <div class="calendar-header-item">T7</div>
+        </div>
+        <div id="calendar-body">          
+        </div>
+      </div>
+      <div class="pagination">
+        <button class="btn-backward-year">«</button>
+        <button class="btn-backward-month">‹</button>
+        <select name="days" id="days-select"></select>
+        <span>/</span>
+        <select name="months" id="months-select">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+        </select>
+        <span>/</span>
+        <input type="number" min="1000" max="4000" id="input-year"></input>
+        <button class="submit-btn">OK</button>
+        <button class="btn-forward-month">›</button>
+        <button class="btn-forward-year">»</button>
+        <button class="btn-reset-default-date">@</button>
+      </div>
+    </div>
+    <script src="main.js"></script>
+  </body>
+</html>
