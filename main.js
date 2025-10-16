@@ -53,74 +53,92 @@ document.addEventListener("DOMContentLoaded", function () {
   document.getElementById("date-specification").innerHTML = dayToday;
 
   function renderCalendar() {
-    container.innerHTML = "";
-    daysSelectContainer.innerHTML = "";
-  
-    document.getElementById("selected-month").innerHTML = selectedMonth;
-    document.getElementById("selected-year").innerHTML = selectedYear;
-    document.getElementById("date-specification").innerHTML = selectedDate;
-  
-    const numberOfDays = daysInMonth(selectedMonth, selectedYear);
-    const value_dayOfWeek = dayOfWeek(1, selectedMonth, selectedYear);
-  
-    for (let i = 0; i < numberOfDays; i++) {
-      const newDateOption = document.createElement("option");
-      newDateOption.textContent = `${i + 1}`;
-      newDateOption.value = `${i + 1}`;
-      daysSelectContainer.appendChild(newDateOption);
-    }
-  
-    let prevMonth = selectedMonth === 1 ? 12 : selectedMonth - 1;
-    let prevYear = selectedMonth === 1 ? selectedYear - 1 : selectedYear;
-    const daysInPrevMonth = daysInMonth(prevMonth, prevYear);
-  
-    // add prev month day cells
-    for (let i = value_dayOfWeek - 1; i >= 0; i--) {
-      const prevDiv = document.createElement("div");
-      prevDiv.classList.add("calendar-body-date-item", "calendar-body-date-item-muted");
-      prevDiv.textContent = `${daysInPrevMonth - i}`;
-      container.appendChild(prevDiv);
-    }
-  
-    // add actual day cells
-    for (let i = 1; i <= numberOfDays; i++) {
-      const currentDiv = document.createElement("div");
-      currentDiv.classList.add("calendar-body-date-item");
-      currentDiv.textContent = `${i}`;
-      if (i === selectedDate) {
-        currentDiv.classList.add("calendar-body-date-item-active");
-      }
-  
-      currentDiv.addEventListener("click", function () {
-        selectedDate = i;
-        document.getElementById("date-specification").innerHTML = i;
-  
-        document.querySelectorAll(".calendar-body-date-item-active").forEach((div) =>
-          div.classList.remove("calendar-body-date-item-active")
-        );
-        currentDiv.classList.add("calendar-body-date-item-active");
-  
-        const date = new Date(`${selectedYear}-${selectedMonth}-${selectedDate}`);
-        const day = date.getDay();
-        const daysOfWeek = [
-          "Chủ Nhật", "Thứ 2", "Thứ 3", "Thứ 4", "Thứ 5", "Thứ 6", "Thứ 7",
-        ];
-        document.querySelector(".date-of-week").innerHTML = daysOfWeek[day];
-      });
-  
-      container.appendChild(currentDiv);
-    }
-  
-    // add trailing days from next month
-    const totalCells = value_dayOfWeek + numberOfDays;
-    const remainingCells = totalCells % 7 === 0 ? 0 : 7 - (totalCells % 7);
-    for (let i = 1; i <= remainingCells; i++) {
-      const nextDiv = document.createElement("div");
-      nextDiv.classList.add("calendar-body-date-item", "calendar-body-date-item-muted");
-      nextDiv.textContent = `${i}`;
-      container.appendChild(nextDiv);
-    }
+  container.innerHTML = "";
+  daysSelectContainer.innerHTML = "";
+
+  document.getElementById("selected-month").innerHTML = selectedMonth;
+  document.getElementById("selected-year").innerHTML = selectedYear;
+  document.getElementById("date-specification").innerHTML = selectedDate;
+
+  const numberOfDays = daysInMonth(selectedMonth, selectedYear);
+  const value_dayOfWeek = dayOfWeek(1, selectedMonth, selectedYear);
+
+  for (let i = 0; i < numberOfDays; i++) {
+    const newDateOption = document.createElement("option");
+    newDateOption.textContent = `${i + 1}`;
+    newDateOption.value = `${i + 1}`;
+    daysSelectContainer.appendChild(newDateOption);
   }
+
+  // Previous month info
+  let prevMonth = selectedMonth === 1 ? 12 : selectedMonth - 1;
+  let prevYear = selectedMonth === 1 ? selectedYear - 1 : selectedYear;
+  const daysInPrevMonth = daysInMonth(prevMonth, prevYear);
+
+  // Add previous month day cells
+  for (let i = value_dayOfWeek - 1; i >= 0; i--) {
+    const day = daysInPrevMonth - i;
+    const prevDiv = document.createElement("div");
+    prevDiv.classList.add("calendar-body-date-item", "calendar-body-date-item-muted");
+    prevDiv.textContent = `${day}`;
+    prevDiv.addEventListener("click", function () {
+      selectedDate = day;
+      selectedMonth = prevMonth;
+      selectedYear = prevYear;
+      renderCalendar();
+    });
+    container.appendChild(prevDiv);
+  }
+
+  // Add actual day cells
+  for (let i = 1; i <= numberOfDays; i++) {
+    const currentDiv = document.createElement("div");
+    currentDiv.classList.add("calendar-body-date-item");
+    currentDiv.textContent = `${i}`;
+    if (i === selectedDate) {
+      currentDiv.classList.add("calendar-body-date-item-active");
+    }
+
+    currentDiv.addEventListener("click", function () {
+      selectedDate = i;
+      document.getElementById("date-specification").innerHTML = i;
+
+      document.querySelectorAll(".calendar-body-date-item-active").forEach((div) =>
+        div.classList.remove("calendar-body-date-item-active")
+      );
+      currentDiv.classList.add("calendar-body-date-item-active");
+
+      const date = new Date(`${selectedYear}-${selectedMonth}-${selectedDate}`);
+      const day = date.getDay();
+      const daysOfWeek = [
+        "Chủ Nhật", "Thứ 2", "Thứ 3", "Thứ 4", "Thứ 5", "Thứ 6", "Thứ 7",
+      ];
+      document.querySelector(".date-of-week").innerHTML = daysOfWeek[day];
+    });
+
+    container.appendChild(currentDiv);
+  }
+
+  // Next month info
+  let nextMonth = selectedMonth === 12 ? 1 : selectedMonth + 1;
+  let nextYear = selectedMonth === 12 ? selectedYear + 1 : selectedYear;
+
+  // Add trailing days from next month
+  const totalCells = value_dayOfWeek + numberOfDays;
+  const remainingCells = totalCells % 7 === 0 ? 0 : 7 - (totalCells % 7);
+  for (let i = 1; i <= remainingCells; i++) {
+    const nextDiv = document.createElement("div");
+    nextDiv.classList.add("calendar-body-date-item", "calendar-body-date-item-muted");
+    nextDiv.textContent = `${i}`;
+    nextDiv.addEventListener("click", function () {
+      selectedDate = i;
+      selectedMonth = nextMonth;
+      selectedYear = nextYear;
+      renderCalendar();
+    });
+    container.appendChild(nextDiv);
+  }
+}
 
   const container = document.getElementById("calendar-body");
 
