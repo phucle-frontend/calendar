@@ -1,7 +1,7 @@
 button {
-    border: none;
-    padding: 10px 20px;
-    border-radius: 8px;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
 }
 #container {
   border: 1px solid black;
@@ -48,7 +48,6 @@ button {
   display: grid;
   grid-template-columns: auto auto auto auto auto auto auto;
   gap: 5px;
-  
 }
 
 .calendar-header-item {
@@ -78,6 +77,12 @@ button {
   color: #111;
 }
 
+.calendar-body-date-item-muted {
+  background-color: rgb(150 165 120);
+  font-weight: 600;
+  color: #111;
+}
+
 .pagination {
   display: flex;
   justify-content: center;
@@ -85,37 +90,10 @@ button {
   gap: 0.5rem;
 }
 
-.btn-back-year {
-}
-
-.btn-back-month {
-}
-
-.input-date {
-}
-
-.nput-dat {
-}
-
-.input-month {
-}
-
-.input-year {
-}
-
 .submit-btn {
-    background: azure;
+  background: azure;
 }
 
 .btn-reset-default-date {
-    background: azure;
-    }
-
-.btn-forward-month {
-}
-
-.btn-forward-year {
-}
-
-.btn-forward-year {
+  background: azure;
 }
